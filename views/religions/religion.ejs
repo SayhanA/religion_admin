@@ -1,0 +1,65 @@
+<%- include('../Includes/dashboard') %> <%- include('../Includes/filter', {page:
+'Religion'}) %>
+
+<table class="min-w-full table-auto mt-10">
+  <thead>
+    <tr class="bg-gray-100">
+      <th class="ps-4 py-2 text-left w-3">
+        <input type="checkbox" name="id" id="selectAllCheckbox" />
+      </th>
+      <th class="px-4 py-2 text-left">Name</th>
+      <th class="px-4 py-2 text-left">Description</th>
+      <th class="px-4 py-2 text-left">Status</th>
+      <th class="px-4 py-2 text-left">Created at</th>
+      <th class="px-4 py-2 text-left">Updated on</th>
+      <th class="px-4 py-2 text-center">Edit</th>
+      <th class="px-4 py-2 text-center">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% religions?.forEach(user => { %>
+    <tr class="border-b">
+      <td class="px-4 py-2 text-left">
+        <input type="checkbox" name="id" id="rowCheckbox" class="rowCheckbox" />
+      </td>
+      <td class="px-4 py-2"><%= user?.name %></td>
+      <td class="px-4 py-2"><%= user?.description %></td>
+      <td class="px-4 py-2">
+        <span
+          class="<%= user?.isActive ? 'bg-green-500' : 'bg-yellow-500' %> text-white px-2 py-1 rounded-full"
+        >
+          <%= user?.isActive ? 'Active' : 'Inactive' %>
+        </span>
+      </td>
+      <td class="px-4 py-2 text-start"><%= user?.createdOn %></td>
+      <td class="px-4 py-2 text-start"><%= user?.updatedOn %></td>
+      <td class="px-4 py-2 text-center">
+        <button
+          class="text-blue-500 hover:text-blue-700 editButton"
+          data-id="<%= user?._id %>"
+          data-name="<%= user?.name %>"
+          data-description="<%= user?.description %>"
+          data-status="<%= user?.isActive %>"
+        >
+          <i class="fa-solid fa-pen"></i>
+        </button>
+      </td>
+      <td class="px-4 py-2 text-center">
+        <form action="/admin/religion/delete?id=<%=user?._id%>" method="POST">
+          <button type="submit" class="text-red-500 hover:text-red-700">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<!-- Update Modal -->
+<% let formAction = "/admin/religion"; %> <%- include('../Includes/formModal',
+{formAction}) %>
+
+<script src="../scripts/religion.js"></script>
+
+<%- include('../Includes/footer') %>

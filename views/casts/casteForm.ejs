@@ -1,0 +1,22 @@
+<%- include('../Includes/head') %>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <form class="bg-white p-6 rounded-lg shadow-md w-96" action="/admin/castes/add" method="POST">
+        <h2 class="text-xl font-semibold mb-4 text-center">Add new caste</h2>
+        
+        <label for="name" class="block text-gray-700 font-medium mb-2">Name:</label>
+        <input type="text" id="name" name="name" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name" autocomplete="name" aria-autocomplete="both">
+        
+        <label for="description" class="block text-gray-700 font-medium mb-2 mt-4">Description:</label>
+        <textarea id="description" name="description" rows="3" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter a description" autocomplete="description" aria-autocomplete="both"></textarea>
+        
+        <label for="options" class="block text-gray-700 font-medium mb-2 mt-4">Choose an option:</label>
+        <select id="options" name="religionId" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <% religions.forEach(data => { %>
+                <option value="<%= data?._id %>"><%= data?.name %></option>
+                <% }) %>
+        </select>
+        
+        <button type="submit" class="mt-4 w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">Submit</button>
+    </form>
+</body>
+</html>

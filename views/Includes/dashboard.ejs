@@ -1,0 +1,73 @@
+<%- include('./head') %>
+
+<body class="flex h-screen">
+  <!-- Sidebar -->
+  <aside class="w-72 bg-[#f7f7f8] p-5 flex flex-col justify-between">
+    <div>
+      <h3
+        class="text-2xl font-bold text-center mb-8 mt-6 flex gap-2 items-center"
+      >
+        <img src="../svgs/circle-heat.svg" class="h-7 w-7" /> Admin Panel
+      </h3>
+      <ul class="space-y-1">
+        <li>
+          <a
+            href="/admin"
+            class="block px-3 py-2 rounded-md hover:bg-blue-500 hover:text-white cursor-pointer <%= path === 'users' ? 'text-black bg-white shadow-md' : 'text-gray-500' %>"
+          >
+            <i class="fa-regular fa-user pr-2"></i> Users</a
+          >
+        </li>
+        <li>
+          <a
+            href="/admin/religion"
+            class="block px-3 py-2 rounded-md hover:bg-blue-500 hover:text-white cursor-pointer <%= path === 'religion' ? 'text-black bg-white shadow-md' : 'text-gray-500' %>"
+          >
+            <i class="fa-brands fa-fort-awesome pr-2"></i> Religions</a
+          >
+        </li>
+        <li>
+          <a
+            href="/admin/castes"
+            class="block px-3 py-2 rounded-md hover:bg-blue-500 hover:text-white cursor-pointer <%= path === 'caste' ? 'text-black bg-white shadow-md' : 'text-gray-500' %>"
+            ><i class="fa-regular fa-chess-rook pr-2"></i> Casts</a
+          >
+        </li>
+      </ul>
+    </div>
+    <!-- <a
+      href="/logout"
+      class="p-3 bg-red-500 rounded-md hover:bg-red-700 cursor-pointer text-center"
+    >
+      Logout
+    </a> -->
+    <form action="/logout" method="GET" class="w-full">
+      <button
+        type="submit"
+        class="p-3 bg-red-500 rounded-md hover:bg-red-700 cursor-pointer text-center flex gap-3 justify-center items-center  w-full text-white"
+      >
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        Logout
+      </button>
+    </form>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="max-w-[1400px] mx-auto flex-1">
+    <!-- Navbar -->
+    <nav class="bg-white pt-12 w-full p-5 pl-6">
+      <div class="flex justify-between w-full">
+        <h2 class="text-xl font-semibold"><%= path.toUpperCase() %></h2>
+        <a href="https://github.com/SayhanA/religioncaste" target="_blank" class="text-gray-400 font-semibold flex items-cente gap-2 border border-gray-300 rounded-md px-3 py-1 group hover:text-gray-500 hover:border-gray-500">
+          <img src="../svgs/github.svg" alt="GitHub symble" class="w-4">
+          Open source code
+        </a>
+      </div>
+      <p class="pt-2 text-gray-500">
+        A simple table that displays data from the "<%= path %>" database table
+        and allows to modify it.
+      </p>
+    </nav>
+
+    <!-- Content -->
+    <main class="flex-1 rounded-lg p-5 pt-2">
