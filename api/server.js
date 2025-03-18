@@ -6,7 +6,7 @@ const { default: mongoose } = require("mongoose");
 const session = require("express-session");
 const isAuthorized = require("../middleware/isAuthorized");
 const { get404 } = require("../controllers/404");
-const { connectDB } = require("../config/db");
+const connectDB = require("../config/db");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const mongoUri = process.env.MONGO_URI;
 
@@ -62,7 +62,7 @@ app.use((error, req, res, next) => {
 //   )
 //   .catch((err) => console.error(err));
 app.listen(PORT, () => {
-  console.log(`You server is running on : http://localhost:${port}`);
+  console.log(`You server is running on : http://localhost:${PORT}`);
 });
 
 module.exports = app;
