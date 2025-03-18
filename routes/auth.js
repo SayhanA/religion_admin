@@ -5,7 +5,6 @@ const {
   postSignUp,
   getlogout,
 } = require("../controllers/auth");
-const isAuthorized = require("../middleware/isAuthorized");
 
 const routes = require("express").Router();
 
