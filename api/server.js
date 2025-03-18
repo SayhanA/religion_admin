@@ -16,6 +16,9 @@ const store = new MongoDBStore({
   collection: "sessions",
 });
 
+// Connect to MongoDB
+connectDB();
+
 //template engine
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -57,9 +60,8 @@ app.use((error, req, res, next) => {
 //     )
 //   )
 //   .catch((err) => console.error(err));
-mongoose
-  .connect(mongoUri)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error(err));
+app.listen(PORT, () => {
+  console.log(`You server is running on : http://localhost:${port}`);
+});
 
 module.exports = app;
