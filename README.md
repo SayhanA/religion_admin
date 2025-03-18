@@ -30,8 +30,8 @@ Ensure you have the following installed:
 ### Steps
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/nodereliginwithadminpanel.git
-   cd nodereliginwithadminpanel
+   git clone https://github.com/SayhanA/religion_admin.git
+   cd religion_admin
    ```
 
 2. Install dependencies:
@@ -57,12 +57,14 @@ Ensure you have the following installed:
 
 ## Folder Structure
 ```
-📦 nodereliginwithadminpanel
-├── 📂 views            # EJS templates for frontend
-├── 📂 public           # Static files (CSS, JS, images)
-├── 📂 routes           # Application routes
-├── 📂 models           # Mongoose schemas
-├── 📂 controllers      # Request handlers
+📦 religion_admin
+├── 📂 config          # Configuration files (e.g., database connection)
+├── 📂 controllers     # Request handlers
+├── 📂 middleware      # Custom middleware functions
+├── 📂 models          # Mongoose schemas
+├── 📂 public          # Static files (CSS, JS, images)
+├── 📂 routes          # Application routes
+├── 📂 views           # EJS templates for frontend
 ├── app.js             # Main application file
 ├── package.json       # Project dependencies
 ├── .env.example       # Example environment file
@@ -89,5 +91,5 @@ Ensure you have the following installed:
 This project is licensed under the **ISC License**.
 
 ## Author
-- **Your Name** - [GitHub](https://github.com/yourusername)
+- **Sayhan Ahmed Tonmoy** - [GitHub](https://github.com/SayhanA)
 
