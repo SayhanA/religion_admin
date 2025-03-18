@@ -7,6 +7,7 @@ exports.getLogin = (req, res, next) => {
     pageTitle: "Login",
     path: "/",
     authorized: false,
+    href: "",
   });
 };
 
@@ -39,7 +40,7 @@ exports.postLogin = (req, res, next) => {
           }
           req.session.isLoggedIn = true;
           req.session.user = user;
-          console.log({user});
+          console.log({ user });
           console.log("User authenticated successfully");
           return res.redirect("/admin");
         })
@@ -82,6 +83,7 @@ exports.getSignUp = (req, res, next) => {
     pageTitle: "SignUp",
     path: "/signup",
     authorized: false,
+    href: "",
     values: { name: "", email: "" },
   });
 };
