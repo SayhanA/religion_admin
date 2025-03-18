@@ -4,8 +4,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const { default: mongoose } = require("mongoose");
 const session = require("express-session");
-const isAuthorized = require("../middleware/isAuthorized");
-const { get404 } = require("../controllers/404");
+const isAuthorized = require("./middleware/isAuthorized");
+const { get404 } = require("./controllers/404");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const mongoUri = process.env.MONGO_URI;
 
@@ -38,12 +38,12 @@ app.use(
   })
 );
 
-app.use(require("../routes/auth"));
-app.use("/religions", require("../routes/religion"));
-app.use("/admin", isAuthorized, require("../routes/adminUsers"));
-app.use("/admin/religion", isAuthorized, require("../routes/adminReligion"));
-app.use("/admin/castes", isAuthorized, require("../routes/adminCast"));
-app.use("/casts", require("../routes/caste"));
+app.use(require("./routes/auth"));
+app.use("/religions", require("./routes/religion"));
+app.use("/admin", isAuthorized, require("./routes/adminUsers"));
+app.use("/admin/religion", isAuthorized, require("./routes/adminReligion"));
+app.use("/admin/castes", isAuthorized, require("./routes/adminCast"));
+app.use("/casts", require("./routes/caste"));
 app.use(get404);
 app.use((error, req, res, next) => {
   res.status(500).render("500", { pageTitle: "Error page", path: "/500" });
@@ -57,5 +57,3 @@ mongoose
     )
   )
   .catch((err) => console.error(err));
-
-  module.exports = app;
