@@ -49,11 +49,17 @@ app.use((error, req, res, next) => {
   res.status(500).render("500", { pageTitle: "Error page", path: "/500" });
 });
 
+// mongoose
+//   .connect(mongoUri)
+//   .then(() =>
+//     app.listen(PORT, () =>
+//       console.log(`Server is running on: http://localhost:${PORT}/`)
+//     )
+//   )
+//   .catch((err) => console.error(err));
 mongoose
   .connect(mongoUri)
-  .then(() =>
-    app.listen(PORT, () =>
-      console.log(`Server is running on: http://localhost:${PORT}/`)
-    )
-  )
+  .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error(err));
+
+module.exports = app;
