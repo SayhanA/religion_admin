@@ -2,7 +2,6 @@ const express = require("express");
 require("dotenv").config();
 const path = require("path");
 const bodyParser = require("body-parser");
-const { default: mongoose } = require("mongoose");
 const session = require("express-session");
 const isAuthorized = require("./middleware/isAuthorized");
 const { get404 } = require("./controllers/404");
