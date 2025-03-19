@@ -3,10 +3,9 @@ require("dotenv").config();
 const path = require("path");
 const bodyParser = require("body-parser");
 const session = require("express-session");
-const isAuthorized = require("../middleware/isAuthorized");
-const { get404 } = require("../controllers/404");
+const isAuthorized = require("./middleware/isAuthorized");
+const { get404 } = require("./controllers/404");
 const { default: mongoose } = require("mongoose");
-const { connectDB } = require("../config/db");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const mongoUri = process.env.MONGO_URI;
 
@@ -17,13 +16,10 @@ const store = new MongoDBStore({
   collection: "sessions",
 });
 
-// Connect to MongoDB
-connectDB();
-
 //template engine
 app.set("view engine", "ejs");
-// app.set("views", "views");
-path.join(__dirname, "../views");
+app.set("views", "views");
+// app.set("views", path.join(__dirname, "views"));
 
 //middlewares
 app.use(bodyParser.json());
@@ -43,12 +39,12 @@ app.use(
   })
 );
 
-app.use(require("../routes/auth"));
-app.use("/religions", require("../routes/religion"));
-app.use("/admin", isAuthorized, require("../routes/adminUsers"));
-app.use("/admin/religion", isAuthorized, require("../routes/adminReligion"));
-app.use("/admin/castes", isAuthorized, require("../routes/adminCast"));
-app.use("/casts", require("../routes/caste"));
+app.use(require("./routes/auth"));
+app.use("/religions", require("./routes/religion"));
+app.use("/admin", isAuthorized, require("./routes/adminUsers"));
+app.use("/admin/religion", isAuthorized, require("./routes/adminReligion"));
+app.use("/admin/castes", isAuthorized, require("./routes/adminCast"));
+app.use("/casts", require("./routes/caste"));
 app.use(get404);
 app.use((err, req, res, next) => {
   console.error(err);
@@ -57,8 +53,13 @@ app.use((err, req, res, next) => {
     .json({ message: "Internal Server Error", error: err.message });
 });
 
-app.listen(PORT, () =>
-  console.log(`Server is running on: http://localhost:${PORT}/`)
-);
+mongoose
+  .connect(mongoUri)
+  .then(() =>
+    app.listen(PORT, () =>
+      console.log(`Server is running on: http://localhost:${PORT}/`)
+    )
+  )
+  .catch((err) => console.error(err));
 
 module.exports = app;
